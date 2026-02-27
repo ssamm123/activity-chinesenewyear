@@ -1,0 +1,81 @@
+
+body{
+    font-family: Arial, sans-serif;
+    background-image: url(lunarbg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+h2{
+    font-size: 35px;
+    font-family: 'Bungee Spice', sans-serif;
+
+}
+h3{
+    color: yellow;
+    font-family: 'Bungee Spice', sans-serif;
+    font-weight: bold;
+}
+
+.container{
+    background: rgba(0,0,0,0.7);
+    padding: 30px;
+    border-radius: 15px;
+    width: 420px;
+    margin: auto;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from { box-shadow: 0 0 10px gold; }
+    to { box-shadow: 0 0 30px gold; }
+}
+
+input[type="number"]{
+    padding: 10px;
+    margin: 8px 0;
+    width: 90%;
+    border-radius: 6px;
+    border: none;
+}
+
+label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    background: gold;
+    border:none;
+    font-weight:bold;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ffd700;
+    transform:scale(1.05);
+}
+
+.result{
+    margin-top:25px;
+    background:black;
+    padding:20px;
+    border-radius:12px;
+}
+
+.error{
+    margin-top:20px;
+    background:darkred;
+    padding:15px;
+    border-radius:10px;
+}
