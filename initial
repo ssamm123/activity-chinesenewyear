@@ -1,0 +1,179 @@
+<?php
+// ==============================
+// 🎉 Chinese New Year Activity
+// ==============================
+
+// Check if form is submitted
+if(isset($_POST['compute'])){
+
+    // ==============================
+    // Step 2: Declare Variables
+    // ==============================
+
+    $angpao1 = $_POST['angpao1'];
+    $angpao2 = $_POST['angpao2'];
+    $angpao3 = $_POST['angpao3'];
+    $foodExpenses = $_POST['foodExpenses'];
+    $isDragonYear = isset($_POST['isDragonYear']) ? true : false;
+    $luckyNumber = $_POST['luckyNumber'];
+
+    // ==============================
+    // 🧮 A. Arithmetic Operators
+    // ==============================
+
+    // Compute total Ang Pao received (+ operator)
+    $totalAngPao = $angpao1 + $angpao2 + $angpao3;
+
+    // Subtract food expenses (- operator)
+    $remainingMoney = $totalAngPao - $foodExpenses;
+
+    // Multiply remaining money by 2 if Dragon Year (* operator)
+    if($isDragonYear){
+        $remainingMoney = $remainingMoney * 2;
+        $dragonMessage = "🐉 Dragon Bonus Applied! Money Doubled!";
+    } else {
+        $dragonMessage = "No Dragon Bonus this year.";
+    }
+
+    // ==============================
+    // ➕ B. Assignment Operators
+    // ==============================
+
+    // Add extra bonus of 500 pesos (+= operator)
+    $remainingMoney += 500;
+
+    // Deduct transportation expense (-= operator)
+    $remainingMoney -= 200;
+
+    // ==============================
+    // 🔍 C. Comparison Operators
+    // ==============================
+
+    $isRich = ($remainingMoney > 5000); // Greater than >
+    $isLuckyEight = ($luckyNumber == 8); // Equal to ==
+    $expensesHigher = ($foodExpenses > $totalAngPao); // >
+
+    // ==============================
+    // 🔗 D. Logical Operators
+    // ==============================
+
+    $superLucky = ($remainingMoney > 5000 && $luckyNumber == 8); // AND &&
+    $luckyCondition = ($remainingMoney > 5000 || $isDragonYear); // OR ||
+    $notDragon = (!$isDragonYear); // NOT !
+
+    // ==============================
+    // 🔁 E. Increment / Decrement
+    // ==============================
+
+    $luckyNumber++; // Increment ++
+    $foodExpenses--; // Decrement --
+
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chinese New Year PHP Activity</title>
+    <style>
+        body{
+            font-family: Arial;
+            background: linear-gradient(to right, #ff0000, #b30000);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container{
+            background: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+        }
+        input{
+            padding: 8px;
+            margin: 5px;
+            width: 80%;
+        }
+        button{
+            padding: 10px;
+            background: gold;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .result{
+            margin-top:20px;
+            background:black;
+            padding:15px;
+            border-radius:10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🧧 Chinese New Year Money Calculator 🧧</h2>
+
+    <form method="POST">
+        <input type="number" name="angpao1" placeholder="Ang Pao 1" required><br>
+        <input type="number" name="angpao2" placeholder="Ang Pao 2" required><br>
+        <input type="number" name="angpao3" placeholder="Ang Pao 3" required><br>
+        <input type="number" name="foodExpenses" placeholder="Food Expenses" required><br>
+        <input type="number" name="luckyNumber" placeholder="Lucky Number" required><br>
+
+        <label>
+            <input type="checkbox" name="isDragonYear">
+            🐉 Year of the Dragon?
+        </label><br><br>
+
+        <button type="submit" name="compute">🎆 Compute</button>
+    </form>
+
+<?php if(isset($_POST['compute'])){ ?>
+
+<div class="result">
+<?php
+    echo "<h3>🎉 Happy Chinese New Year! 🎉</h3><br>";
+
+    echo "🧧 Total Ang Pao: ₱" . $totalAngPao . "<br>";
+    echo "🥟 Remaining After Expenses & Bonuses: ₱" . $remainingMoney . "<br>";
+    echo $dragonMessage . "<br><br>";
+
+    if($superLucky){
+        echo "🌟 You are SUPER Lucky this Year! 🌟<br>";
+    } elseif($luckyCondition){
+        echo "✨ You are Lucky this Year! ✨<br>";
+    } else {
+        echo "Maybe next year will bring more fortune.<br>";
+    }
+
+    if($expensesHigher){
+        echo "⚠ Warning: Your expenses are higher than your Ang Pao!<br>";
+    }
+
+    if($notDragon){
+        echo "This is NOT the Dragon Year.<br>";
+    }
+
+    echo "<br>🔢 Lucky Number After Increment: " . $luckyNumber . "<br>";
+    echo "🍜 Food Expenses After Decrement: " . $foodExpenses . "<br>";
+
+    echo "<br>🎊 Final Fortune Score: ₱" . ($remainingMoney + $luckyNumber) . "<br>";
+
+    echo "<br>🔥 Amazing Feature: Fortune Level System 🔥<br>";
+    if($remainingMoney > 10000){
+        echo "💎 Fortune Level: EMPEROR OF PROSPERITY 👑";
+    } elseif($remainingMoney > 5000){
+        echo "🐲 Fortune Level: Dragon Blessed";
+    } else {
+        echo "🧧 Fortune Level: Growing Wealth";
+    }
+?>
+</div>
+
+<?php } ?>
+
+</div>
+</body>
+</html>
